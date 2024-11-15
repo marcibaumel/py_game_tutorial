@@ -1,0 +1,38 @@
+name: Create build
+
+on:
+  push:
+    branches:
+      - main  # Run the workflow on pushes to the main branch
+  pull_request:
+    branches:
+      - main  # Run the workflow on PRs to the main branch
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.3'  # Set your Python version here
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller  # Install PyInstaller for building
+
+      - name: Build EXE with PyInstaller
+        run: |
+          pyinstaller --onefile main.py
+          
+      - name: Archive the output
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-python-app
+          path: dist/main.exe
