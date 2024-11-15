@@ -1,4 +1,4 @@
-name: Create build
+name: Build EXE
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
           pyinstaller --onefile main.py
           
       - name: Archive the output
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
           name: my-python-app
           path: dist/main.exe
