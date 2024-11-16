@@ -1,12 +1,12 @@
-name: Build EXE
+name: Normal build
 
 on:
   push:
     branches:
-      - main  # Run the workflow on pushes to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Run the workflow on PRs to the main branch
+      - main
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.12.3'  # Set your Python version here
+          python-version: '3.12.3'
 
       - name: Install dependencies
         run: |
@@ -29,10 +29,10 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller --onefile main.py
+          pyinstaller.exe --onefile --noconsole main.py
           
       - name: Archive the output
-        uses: actions/upload-artifact@v3  # Updated to v3
+        uses: actions/upload-artifact@v3
         with:
           name: my-python-app
           path: dist/main.exe
