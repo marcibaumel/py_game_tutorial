@@ -1,14 +1,15 @@
 import pygame
 from sys import exit 
-
-ASSET_PATH = 'asset/'
+from constants import ASSET_PATH, HEIGHT, WIDTH
+from helper import resource_path
 
 pygame.init()
-screen = pygame.display.set_mode((800, 400))
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('GAME TITLE')
 clock = pygame.time.Clock()
 
-test_surface = pygame.image.load(ASSET_PATH+'Sky.png')
+test_surface = pygame.image.load(resource_path(ASSET_PATH+'Sky.png'))
 
 while True:
     for event in pygame.event.get():
@@ -18,3 +19,4 @@ while True:
     screen.blit(test_surface, (200, 100))
     pygame.display.update()
     clock.tick(60)
+    
