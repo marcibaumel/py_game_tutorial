@@ -20,7 +20,8 @@ snail_surface = pygame.image.load(
 ).convert_alpha()
 snail_rect = snail_surface.get_rect(midbottom=(600, 300))
 
-text_surface = font.render("GAME TITLE", True, "blue")
+score_surf = font.render("SCORE", True, "blue")
+score_rect = score_surf.get_rect(center=(WIDTH / 2, 50))
 
 player_surf = pygame.image.load(
     resource_path(ASSET_PATH + "player_walk_1.png")
@@ -38,7 +39,10 @@ while True:
 
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0, 300))
-    screen.blit(text_surface, (300, 50))
+
+    pygame.draw.rect(screen, "Pink", score_rect)
+    pygame.draw.rect(screen, "Pink", score_rect, 5)
+    screen.blit(score_surf, score_rect)
 
     snail_rect.x -= 4
 
